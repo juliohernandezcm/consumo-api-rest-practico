@@ -1,19 +1,21 @@
+import { renderCategoriesList, renderTrendingPreviewList } from './main.js';
+
 const navigator = () => {
-	if (location.hash.startsWith('#trends')) {
-		trendsPage();
-	} else if (location.hash.startsWith('#search=')) {
-		searchPage();
-	} else if (location.hash.startsWith('#category=')) {
-		categoriesPage();
-	} else if (location.hash.startsWith('#movie=')) {
-		movieDateilsPage();
-	} else {
-		homePage();
-	}
+	location.hash.startsWith('#trends')
+		? trendsPage()
+		: location.hash.startsWith('#search=')
+		? searchPage()
+		: location.hash.startsWith('#category=')
+		? categoriesPage()
+		: location.hash.startsWith('#movie=')
+		? movieDateilsPage()
+		: homePage();
 };
 
 const homePage = () => {
 	console.log('Home');
+	renderTrendingPreviewList();
+	renderCategoriesList();
 };
 
 const trendsPage = () => {

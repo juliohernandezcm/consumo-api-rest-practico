@@ -4,7 +4,7 @@ import {
 } from './apiTrasaction.js';
 const URL_IMG = 'https://image.tmdb.org/t/p/w300';
 
-const renderTrendingPreviewList = async () => {
+export const renderTrendingPreviewList = async () => {
 	const trendingMoviesList = await getTrendingMoviesPreview();
 
 	const moviesNodes = trendingMoviesList.map((movie) => {
@@ -28,7 +28,7 @@ const renderTrendingPreviewList = async () => {
 	trendingPreview.append(...moviesNodes);
 };
 
-const renderCategoriesList = async () => {
+export const renderCategoriesList = async () => {
 	const categoriesList = await getCategoriesMoviesPreview();
 	const categoriesPreview = document.querySelector('.categoriesPreview__list');
 
@@ -45,6 +45,3 @@ const renderCategoriesList = async () => {
 		categoryContainer.append(categoryTitle);
 	});
 };
-
-renderTrendingPreviewList();
-renderCategoriesList();

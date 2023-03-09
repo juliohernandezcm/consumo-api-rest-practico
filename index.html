@@ -17,16 +17,15 @@
 <body>
 
    <!-- HEADER -->
-   <header id="header" class="header__container">
-      <span class="header__arrow inactive">&lt;</span>
+   <header id="header" class="header__container"> <!-- .header__container--long -->
+      <img class="header__container--arrow inactive" src="./assets/white-arrow.png" alt="boton atrás">
       <h1 class="header__title">Moviegram</h1>
-      <h1 class="header__title header__title--categoryView inactive">Acción</h1>
+      <h1 class="header__title--categoryView inactive">Acción</h1>
       <form id="searchForm" class="header__searchForm">
          <input class="header__searchForm--input" type="text" placeholder="Vengadores" />
          <button id="searchBtn"><img id="search" src="./assets/search.png"></button>
       </form>
    </header>
-
    <!-- TRENDING PREVIEW -->
    <section id="trendingPreview" class="trendingPreviewcontainer">
       <div class="trendingPreview__header">
@@ -52,52 +51,60 @@
    </section>
 
    <!-- GENERAL LIST -->
-   <section id="genericList" class="genericList-container inactive">
-      <div class="movie-container">
-         <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+   <section id="genericList" class="inactive"> <!-- genericList__container -->
+      <div class="movie__container ">
+         <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie__img"
             alt="Nombre de la película" />
       </div>
-      <div class="movie-container">
-         <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+      <div class="movie__container">
+         <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie__img"
             alt="Nombre de la película" />
       </div>
-      <div class="movie-container">
-         <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+      <div class="movie__container">
+         <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie__img"
             alt="Nombre de la película" />
       </div>
    </section>
 
+   <!-- BTN -->
+   <div class="btn__container">
+      <button class="genericList__btn inactive">Ver más</button>
+   </div>
+
+
    <!-- MOVIE DETAIL -->
-   <section id="movieDetail" class="movieDetail-container inactive">
-      <h1 class="movieDetail-title">Deadpool</h1>
-      <span class="movieDetail-score">7.6</span>
-      <p class="movieDetail-description">
+   <section id="movieDetail" class="inactive"> <!-- movieDetail__container -->
+      <h1 class="movieDetail__title">Deadpool</h1>
+      <span class="movieDetail__score"><img class="score__container--star" src="./assets/star-fill.png"
+            alt="Star score">7.6</span>
+      <p class="movieDetail__description">
          Wisecracking mercenary Deadpool battles the evil and powerful Cable and other bad guys to save a boy's life.
       </p>
-      <article class="categories-list">
-         <div class="category-container">
-            <h3 id="id28" class="category-title">Romance</h3>
+      <article class="categories__list">
+         <div class="category__container">
+            <h3 id="id28" class="category__title">Romance</h3>
          </div>
          <div class="category-container">
-            <h3 id="id16" class="category-title">Drama</h3>
+            <h3 id="id16" class="category__title">Drama</h3>
          </div>
          <div class="category-container">
-            <h3 id="id14" class="category-title">Acción</h3>
+            <h3 id="id14" class="category__title">Acción</h3>
          </div>
+
       </article>
-      <article class="relatedMovies-container">
-         <h2 class="relatedMovies-title">Películas similares</h2>
-         <div class="relatedMovies-scrollContainer">
-            <div class="movie-container">
-               <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+      <article class="relatedMovies__container">
+         <h2 class="relatedMovies__title">Películas similares</h2>
+         <div class="relatedMovies__scrollContainer">
+            <div class="movie__container">
+               <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie__img"
                   alt="Nombre de la película" />
             </div>
-            <div class="movie-container">
-               <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+            <div class="movie__container">
+               <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie__img"
                   alt="Nombre de la película" />
             </div>
-            <div class="movie-container">
-               <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+            <div class="movie__container">
+               <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie__img"
                   alt="Nombre de la película" />
             </div>
          </div>
@@ -108,6 +115,7 @@
    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
    <script type="module" src="./src/secrets.js"></script>
    <script type="module" src="./src/apiTrasaction.js"></script>
+   <script type="module" src="./src/nodes.js"></script>
    <script type="module" src="./src/main.js"></script>
    <script type="module" src="./src/navigation.js"></script>
 
