@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&family=Poppins:wght@200;300;400;500;700;800&display=swap"
+      rel="stylesheet">
+   <link rel="stylesheet" href="./styles/app.css" />
+   <title>Moviegram</title>
+</head>
+
+<body>
+
+   <!-- HEADER -->
+   <header id="header" class="header__container">
+      <span class="header__arrow inactive">&lt;</span>
+      <h1 class="header__title">Moviegram</h1>
+      <h1 class="header__title header__title--categoryView inactive">Acción</h1>
+      <form id="searchForm" class="header__searchForm">
+         <input class="header__searchForm--input" type="text" placeholder="Vengadores" />
+         <button id="searchBtn"><img id="search" src="./assets/search.png"></button>
+      </form>
+   </header>
+
+   <!-- TRENDING PREVIEW -->
+   <section id="trendingPreview" class="trendingPreviewcontainer">
+      <div class="trendingPreview__header">
+         <h2 class="trendingPreview__title">Tendencias</h2>
+         <button class="trendingPreview__btn">Ver más</button>
+      </div>
+      <article class="trendingPreview__movieList">
+         <!-- <div class="movie__container">
+            <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie__img"
+               alt="Nombre de la película" />
+         </div> -->
+      </article>
+   </section>
+
+   <!-- CATEGORIES PREVIEW -->
+   <section id="categoriesPreview" class="categoriesPreview__container">
+      <h2 class="categoriesPreview__title">Categorías</h2>
+      <article class="categoriesPreview__list">
+         <!-- <div class="category__container">
+            <h3 id="id28" class="category__title">Romance</h3>
+         </div> -->
+      </article>
+   </section>
+
+   <!-- GENERAL LIST -->
+   <section id="genericList" class="genericList-container inactive">
+      <div class="movie-container">
+         <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+            alt="Nombre de la película" />
+      </div>
+      <div class="movie-container">
+         <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+            alt="Nombre de la película" />
+      </div>
+      <div class="movie-container">
+         <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+            alt="Nombre de la película" />
+      </div>
+   </section>
+
+   <!-- MOVIE DETAIL -->
+   <section id="movieDetail" class="movieDetail-container inactive">
+      <h1 class="movieDetail-title">Deadpool</h1>
+      <span class="movieDetail-score">7.6</span>
+      <p class="movieDetail-description">
+         Wisecracking mercenary Deadpool battles the evil and powerful Cable and other bad guys to save a boy's life.
+      </p>
+      <article class="categories-list">
+         <div class="category-container">
+            <h3 id="id28" class="category-title">Romance</h3>
+         </div>
+         <div class="category-container">
+            <h3 id="id16" class="category-title">Drama</h3>
+         </div>
+         <div class="category-container">
+            <h3 id="id14" class="category-title">Acción</h3>
+         </div>
+      </article>
+      <article class="relatedMovies-container">
+         <h2 class="relatedMovies-title">Películas similares</h2>
+         <div class="relatedMovies-scrollContainer">
+            <div class="movie-container">
+               <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+                  alt="Nombre de la película" />
+            </div>
+            <div class="movie-container">
+               <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+                  alt="Nombre de la película" />
+            </div>
+            <div class="movie-container">
+               <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+                  alt="Nombre de la película" />
+            </div>
+         </div>
+      </article>
+   </section>
+
+   <footer>Julio Hernández 2023</footer>
+   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+   <script type="module" src="./src/secrets.js"></script>
+   <script type="module" src="./src/apiTrasaction.js"></script>
+   <script type="module" src="./src/main.js"></script>
+   <script type="module" src="./src/navigation.js"></script>
+
+</body>
+
+</html>
