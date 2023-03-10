@@ -57,6 +57,8 @@ body {
 .header__container--arrow {
 	margin-top: 4rem;
 	margin-left: 2.4rem;
+	margin-bottom: 2.4rem;
+	cursor: pointer;
 }
 
 .header__title::before {
@@ -67,6 +69,10 @@ body {
 .header__title::after {
 	content: '!';
 	color: var(--assents-color);
+}
+
+.header__title--categoryView {
+	margin: 0 2.4rem 1.6rem 2.4rem;
 }
 
 .header__searchForm {
@@ -100,6 +106,7 @@ body {
 	border-radius: 0px 8px 8px 0px;
 	background-color: var(--assents-color);
 	border: none;
+	cursor: pointer;
 }
 
 .header__container--long {

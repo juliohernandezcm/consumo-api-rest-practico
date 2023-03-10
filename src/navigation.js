@@ -1,4 +1,12 @@
-import { renderCategoriesList, renderTrendingPreviewList } from './main.js';
+import {
+	renderCategoriesList,
+	renderTrendingPreviewList,
+	renderMovieDetail,
+	renderSearchPage,
+	renderCategoryPage,
+} from './main.js';
+
+import { searchBtn, headerArrow } from './nodes.js';
 
 const navigator = () => {
 	location.hash.startsWith('#trends')
@@ -13,7 +21,6 @@ const navigator = () => {
 };
 
 const homePage = () => {
-	console.log('Home');
 	renderTrendingPreviewList();
 	renderCategoriesList();
 };
@@ -23,16 +30,20 @@ const trendsPage = () => {
 };
 
 const searchPage = () => {
-	console.log('search!!!');
+	renderSearchPage();
 };
 
 const categoriesPage = () => {
 	console.log('category!!!');
+	renderCategoryPage();
 };
 
 const movieDateilsPage = () => {
-	console.log('Movie');
+	renderMovieDetail();
 };
+
+searchBtn.addEventListener('click', () => (location.hash = '#search='));
+headerArrow.addEventListener('click', () => history.back());
 
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);

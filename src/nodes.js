@@ -1,10 +1,12 @@
 const $ = (id) => document.querySelector(id);
 
 /* HEADER NODES */
+const headerContainer = $('.header__container');
 const headerArrow = $('.header__container--arrow');
-const headerTitle = $('.eader__title');
+const headerTitle = $('.header__title');
 const headerTitleCategoryView = $('.header__title--categoryView');
 const headerSearchForm = $('.header__searchForm');
+const searchBtn = $('#searchBtn');
 
 /* TRENDING PREVIEW NODES */
 const trendingPreviewcontainer = $('.trendingPreviewcontainer');
@@ -18,3 +20,17 @@ const genericListBtn = $('.genericList__btn');
 
 /*  MOVIE DETAIL NODES */
 const movieDetail = $('#movieDetail');
+
+export {
+	headerContainer,
+	headerArrow,
+	headerTitle,
+	headerTitleCategoryView,
+	searchBtn,
+	headerSearchForm,
+	trendingPreviewcontainer,
+	categoriesPreviewContainer,
+	genericList,
+	genericListBtn,
+	movieDetail,
+};
