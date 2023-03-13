@@ -13,7 +13,7 @@ const api = axios.create({
 
 import { API_KEY } from './secrets.js';
 
-export const getTrendingMoviesPreview = async () => {
+const getTrendingMoviesPreview = async () => {
 	const { data } = await api(URL_TRENDING);
 
 	let trendingMovies = data.results;
@@ -21,9 +21,11 @@ export const getTrendingMoviesPreview = async () => {
 	return trendingMovies;
 };
 
-export const getCategoriesMoviesPreview = async () => {
+const getCategoriesMoviesPreview = async () => {
 	const { data } = await api(URL_CATEGORIES);
 	let categories = data.genres;
 
 	return categories;
 };
+
+export { getTrendingMoviesPreview, getCategoriesMoviesPreview };

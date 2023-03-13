@@ -23,7 +23,7 @@
       <h1 class="header__title--categoryView inactive">Acción</h1>
       <form id="searchForm" class="header__searchForm">
          <input class="header__searchForm--input" type="text" placeholder="Vengadores" />
-         <button id="searchBtn"><img id="search" src="./assets/search.png"></button>
+         <button type="button" id="searchBtn"><img id="search" src="./assets/search.png"></button>
       </form>
    </header>
    <!-- TRENDING PREVIEW -->
@@ -111,13 +111,18 @@
       </article>
    </section>
 
-   <footer>Julio Hernández 2023</footer>
+   <footer class="footer">
+      <div class="footer__rrss">
+         <img class="footer__rrss--github" src="./assets/github-sign.png" alt="GitHub Logo">
+         <img class="footer__rrss--linkedin" src="./assets/linkedin.png" alt="LinkedIn Logo">
+         <img class="footer__rrss--gmail" src="./assets/gmail-logo.png" alt="Gmail Logo">
+      </div>
+      <div class="footer_copyright">
+         <p>Copyright © 2023 - Julio hernandez</p>
+      </div>
+   </footer>
    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-   <script type="module" src="./src/secrets.js"></script>
-   <script type="module" src="./src/apiTrasaction.js"></script>
-   <script type="module" src="./src/nodes.js"></script>
    <script type="module" src="./src/main.js"></script>
-   <script type="module" src="./src/navigation.js"></script>
 
 </body>
 
