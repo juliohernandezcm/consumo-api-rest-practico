@@ -42,6 +42,12 @@ trendingPreviewBtn.addEventListener('click', () => {
 	location.hash = '#trends';
 });
 
+inputSearch.addEventListener('keypress', (event) => {
+	if (event.key === 'Enter') {
+		location.hash = `#search=${inputSearch.value}`;
+	}
+});
+
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
 window.onhashchange = () => location.reload();
