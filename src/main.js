@@ -3,51 +3,45 @@ import {
 	renderTrendingPreviewList,
 	renderMovieDetail,
 	renderSearchPage,
+	renderCategoriesPage,
 	renderTrendsPage,
 } from './renders.js';
 
-import { searchBtn, headerArrow, trendingPreviewBtn } from './nodes.js';
+import {
+	searchBtn,
+	headerArrow,
+	trendingPreviewBtn,
+	inputSearch,
+} from './nodes.js';
 
 const navigator = () => {
-	location.hash.startsWith('#trends')
-		? trendsPage()
-		: location.hash.startsWith('#search=')
-		? searchPage()
-		: location.hash.startsWith('#category=')
-		? categoriesPage()
-		: location.hash.startsWith('#movie=')
-		? movieDatailsPage()
-		: homePage();
+	if (location.hash.startsWith('#trends')) {
+		renderTrendsPage();
+	} else if (location.hash.startsWith('#search=')) {
+		renderSearchPage();
+	} else if (location.hash.startsWith('#category=')) {
+		renderCategoriesPage();
+	} else if (location.hash.startsWith('#movie=')) {
+		renderMovieDetail();
+	} else {
+		renderTrendingPreviewList();
+		renderCategoriesList();
+	}
+	window.scrollTo(0, 0);
 };
 
-const homePage = () => {
-	renderTrendingPreviewList();
-	renderCategoriesList();
-};
-
-const trendsPage = () => renderTrendsPage();
-const searchPage = () => renderSearchPage();
-const categoriesPage = () => renderCategoryPage();
-const movieDatailsPage = () => renderMovieDetail();
-
 searchBtn.addEventListener('click', () => {
-	console.log('click searchBtn');
-});
-
-searchBtn.addEventListener('click', () => {
-	location.hash = '#search=';
-	location.reload();
+	location.hash = `#search=${inputSearch.value}`;
 });
 
 headerArrow.addEventListener('click', () => {
-	location.hash = '#home';
-	location.reload();
+	history.back();
 });
 
 trendingPreviewBtn.addEventListener('click', () => {
 	location.hash = '#trends';
-	location.reload();
 });
 
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
+window.onhashchange = () => location.reload();

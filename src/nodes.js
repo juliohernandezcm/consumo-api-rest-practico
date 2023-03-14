@@ -6,6 +6,7 @@ export const headerArrow = $('.header__container--arrow');
 export const headerTitle = $('.header__title');
 export const headerTitleCategoryView = $('.header__title--categoryView');
 export const headerSearchForm = $('.header__searchForm');
+export const inputSearch = $('.header__searchForm--input');
 export const searchBtn = $('#searchBtn');
 
 /* TRENDING PREVIEW NODES */
@@ -28,6 +29,7 @@ export const genericListBtn = $('.genericList__btn');
 /*  MOVIE DETAIL NODES */
 export const movieDetail = $('#movieDetail');
 export const movieDetailTitle = $('.movieDetail__title');
+export const scoreContainer = $('.score__container');
 export const movieDetailScore = $('.movieDetail__score');
 export const scoreContainerStar = $('.score__container--star');
 export const movieDetailDescription = $('.movieDetail__description');
