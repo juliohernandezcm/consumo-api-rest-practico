@@ -6,10 +6,10 @@
 :root {
 	--font: 'Poppins', sans-serif;
 	--text-color: #ffffff;
-	--assents-color: #ffc700;
-	--input-bg: #2b2b2b;
+	--assents-color: #3e54ac;
+	--input-bg: #404040;
 	--text-color2: #555555;
-	--bgColor: #111111;
+	--bgColor: #0d0d0d;
 
 	--red: #ff1e1e;
 	--thriller: #91050d;
@@ -88,14 +88,15 @@ body {
 	padding: 12px;
 	width: 85%;
 	background-color: var(--input-bg);
-	border: 0.5px solid var(--assents-color);
+	border: 2px solid var(--assents-color);
+	color: var(--text-color2);
 }
 
 .header__searchForm--input::placeholder {
 	font-size: 1.2em;
 	font-family: var(--text-font);
 	font-weight: 100;
-	color: var(--text-color2);
+	color: var(--assents-color);
 }
 
 .header__container button {
@@ -151,17 +152,12 @@ body {
 	color: var(--text-color);
 }
 
-.trendingPreview__title::after {
-	content: '.';
-	color: var(--assents-color);
-}
-
 .trendingPreview__btn {
 	width: 76px;
 	height: 30px;
 	border-radius: 8px;
 	background-color: var(--assents-color);
-	color: var(--bgColor);
+	color: var(--text-color);
 	border: none;
 	cursor: pointer;
 }
@@ -171,16 +167,17 @@ body {
 }
 
 .movie__container {
-	padding: 6px;
-	background-color: var(--input-bg);
-	margin: 2px;
+	height: 230px;
+	padding: 2px;
 	border-radius: 8px;
+	margin: 2px;
 }
 
 .movie__container .movie__img {
 	width: 150px;
 	height: 225px;
 	border-radius: 8px;
+	border: 3px solid var(--assents-color);
 }
 
 #categoriesPreview {
@@ -268,11 +265,6 @@ body {
 	color: var(--text-color);
 }
 
-.categoriesPreview__title::after {
-	content: '.';
-	color: var(--assents-color);
-}
-
 .categoriesPreview__list {
 	display: grid;
 	grid-template-columns: repeat(2, 160px);
@@ -294,70 +286,89 @@ body {
 .category__title::before {
 	content: '....';
 	color: transparent;
-	background-color: var(--idColor);
+	background-repeat: no-repeat;
+	background-size: 22px;
 	border-radius: 6px;
-	margin-right: 8px;
+	margin-right: 4px;
 	display: inline-block;
 	width: 28px;
 	height: 26px;
 }
 
-#id28 {
-	--idColor: var(--blue);
+#id28::before {
+	background-image: url('/assets/action-icon.png');
 }
-#id12 {
-	--idColor: var(--green);
+
+#id12::before {
+	background-image: url('/assets/adventure-icon1.png');
 }
-#id16 {
-	--idColor: var(--blue-light);
+
+#id16::before {
+	background-image: url('/assets/animation-icon.png');
 }
-#id35 {
-	--idColor: var(--yellow);
+
+#id35::before {
+	background-image: url('/assets/comedy-icon.png');
 }
-#id80 {
-	--idColor: var(--purple);
+
+#id80::before {
+	background-image: url('/assets/crime-icon.png');
 }
-#id99 {
-	--idColor: var(--electric-blue);
+
+#id99::before {
+	background-image: url('/assets/documentary-icon.png');
 }
-#id18 {
-	--idColor: var(--red);
+
+#id18::before {
+	background-image: url('/assets/drama-icon.png');
 }
-#id10751 {
-	--idColor: var(--green-vintage);
+
+#id10751::before {
+	background-image: url('/assets/family-icon.png');
 }
-#id14 {
-	--idColor: var(--fantasy);
+
+#id14::before {
+	background-image: url('/assets/fantasy-icon.png');
 }
-#id36 {
-	--idColor: var(--gold);
+
+#id36::before {
+	background-image: url('/assets/history-icon.png');
 }
-#id27 {
-	--idColor: var(--darkGreen);
+
+#id27::before {
+	background-image: url('/assets/horror-icon.png');
 }
-#id10402 {
-	--idColor: var(--orange);
+
+#id10402::before {
+	background-image: url('/assets/musical-icon.png');
 }
-#id9648 {
-	--idColor: var(--greenMistery);
+
+#id9648::before {
+	background-image: url('/assets/mistery-icon.png');
 }
-#id10749 {
-	--idColor: var(--pink);
+
+#id10749::before {
+	background-image: url('/assets/romance-icon.png');
 }
-#id878 {
-	--idColor: var(--silver);
+
+#id878::before {
+	background-image: url('/assets/scifi-icon.png');
 }
-#id10770 {
-	--idColor: var(--beige);
+
+#id10770::before {
+	background-image: url('/assets/tv-icon.png');
 }
-#id53 {
-	--idColor: var(--thriller);
+
+#id53::before {
+	background-image: url('/assets/thriller-icon.png');
 }
-#id10752 {
-	--idColor: var(--grey);
+
+#id10752::before {
+	background-image: url('/assets/war-icon.png');
 }
-#id37 {
-	--idColor: var(--brown);
+
+#id37::before {
+	background-image: url('/assets/western-icon.png');
 }
 
 #id19 {
@@ -368,13 +379,12 @@ body {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	margin: 0px 2.4rem;
-	gap: 10px;
 }
 
 .genericList__container > .movie__container {
 	display: flex;
 	justify-content: center;
-	margin: 2px;
+	margin: 6px;
 	border-radius: 8px;
 }
 
@@ -411,14 +421,14 @@ body {
 	padding-top: 5px;
 }
 
-.footer__rrss > img {
-	width: 6%;
+.footer__rrss > a > img {
+	width: 30px;
 	margin: 1rem;
 	cursor: pointer;
 }
 
 .footer_copyright {
 	text-align: center;
-	font-size: 1rem;
+	font-size: 1.2rem;
 	padding-bottom: 5px;
 }
