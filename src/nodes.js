@@ -15,6 +15,7 @@ export const trendingPreviewHeader = $('.trendingPreview__header');
 export const trendingPreviewTitle = $('.trendingPreview__title');
 export const trendingPreviewBtn = $('.trendingPreview__btn');
 export const trendingPreviewMovieList = $('.trendingPreview__movieList');
+export const movieContainer = $('.movie__container');
 
 /* CATEGORIES PREVIEW NODES */
 export const categoriesPreviewContainer = $('.categoriesPreview__container');

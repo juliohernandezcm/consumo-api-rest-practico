@@ -32,7 +32,20 @@ const URL_IMG = 'https://image.tmdb.org/t/p/w300';
 const URL_IMG_500 = 'https://image.tmdb.org/t/p/w500';
 
 // Utils
+const visibilityChecker = (entries) => {
+	entries.forEach((element) => {
+		if (element.isIntersecting) {
+			const url = element.target.getAttribute('data-img');
+			element.target.setAttribute('src', url);
+		}
+	});
+};
+
+const lazyLoader = new IntersectionObserver(visibilityChecker);
+
 const createMoviesContainers = (apiData, container) => {
+	console.log(apiData);
+	container.innerHTML = '';
 	const moviesNodes = apiData.map((movie) => {
 		const movieContainer = document.createElement('div');
 		movieContainer.classList.add('movie__container');
@@ -43,11 +56,22 @@ const createMoviesContainers = (apiData, container) => {
 
 		const movieImage = document.createElement('img');
 		movieImage.classList.add('movie__img');
-		movieImage.setAttribute('src', `${URL_IMG}${movie.poster_path}`);
+		movieImage.setAttribute('data-img', `${URL_IMG}${movie.poster_path}`);
 		movieImage.setAttribute('alt', `${movie.original_title}`);
 
-		movieContainer.appendChild(movieImage);
+		movieImage.addEventListener('error', () => {
+			movieImage.setAttribute('src', '../assets/no-image.png');
+			movieImage.style = 'filter: blur(1.5px)';
 
+			const movieTitle = document.createElement('p');
+			movieTitle.classList.add('movie__title');
+			movieTitle.textContent = movie.original_title;
+			movieContainer.appendChild(movieTitle);
+		});
+
+		lazyLoader.observe(movieImage);
+
+		movieContainer.appendChild(movieImage);
 		return movieContainer;
 	});
 
@@ -55,6 +79,8 @@ const createMoviesContainers = (apiData, container) => {
 };
 
 const createCategoriesContainer = (apiDataCategories, container) => {
+	container.innerHTML = '';
+
 	apiDataCategories.map((category) => {
 		const categoryContainer = document.createElement('div');
 		categoryContainer.classList.add('category__container');
@@ -68,6 +94,7 @@ const createCategoriesContainer = (apiDataCategories, container) => {
 		});
 
 		container.append(categoryContainer);
+
 		categoryContainer.append(categoryTitle);
 	});
 };
@@ -159,7 +186,6 @@ export const renderTrendsPage = async () => {
 
 	genericListBtn.classList.remove('inactive');
 
-	console.log(trendingMoviesList);
 	createMoviesContainers(trendingMoviesList, genericList);
 };
 
@@ -189,3 +215,5 @@ export const renderCategoriesPage = async () => {
 
 	window.scrollTo(0, 0);
 };
+
+/* OBSERVER */
