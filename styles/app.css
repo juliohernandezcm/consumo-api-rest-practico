@@ -420,16 +420,6 @@ body {
 	justify-content: center;
 }
 
-.btn__container .genericList__btn {
-	width: 76px;
-	height: 30px;
-	border-radius: 8px;
-	background-color: var(--assents-color);
-	color: var(--bgColor);
-	border: none;
-	margin-top: 3.2rem;
-}
-
 .footer {
 	width: 100%;
 	left: 0;

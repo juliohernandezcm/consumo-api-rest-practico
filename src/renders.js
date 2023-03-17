@@ -3,9 +3,9 @@ import {
 	getTrendingMoviesPreview,
 	getMoviesByCategories,
 	getMoviesBySearch,
-	getTrendingMovies,
 	getMovieById,
 	getSimilarMovies,
+	getPaginatedTrendingMovies,
 } from './api-trasaction.js';
 
 import {
@@ -26,26 +26,48 @@ import {
 	movieDetailDescription,
 	categoriesList,
 	relatedMoviesScrollContainer,
+	footer,
 } from './nodes.js';
 
 const URL_IMG = 'https://image.tmdb.org/t/p/w300';
 const URL_IMG_500 = 'https://image.tmdb.org/t/p/w500';
 
 // Utils
-const visibilityChecker = (entries) => {
-	entries.forEach((element) => {
-		if (element.isIntersecting) {
-			const url = element.target.getAttribute('data-img');
-			element.target.setAttribute('src', url);
+const elementObserver = new IntersectionObserver((entries) => {
+	entries.forEach((entry) => {
+		if (entry.isIntersecting) {
+			const url = entry.target.getAttribute('data-img');
+			entry.target.setAttribute('src', url);
 		}
 	});
-};
+});
 
-const lazyLoader = new IntersectionObserver(visibilityChecker);
+const footerObserver = new IntersectionObserver((entries) => {
+	entries.forEach((entry) => {
+		if (entry.isIntersecting && location.hash.startsWith('#trends')) {
+			renderTrendsPage();
+		} else if (entry.isIntersecting && location.hash.startsWith('#search=')) {
+			renderSearchPage();
+		} else if (
+			entry.isIntersecting &&
+			location.hash.startsWith('#category=')
+		) {
+			renderCategoriesPage();
+		}
+	});
+});
 
-const createMoviesContainers = (apiData, container) => {
-	console.log(apiData);
-	container.innerHTML = '';
+// CREATE MOVIES CONTAINER
+const createMoviesContainers = (
+	apiData,
+	container,
+	{ lazyload = false, clean = true }
+) => {
+	// Limpia contenido HTML
+	if (clean) {
+		container.innerHTML = '';
+	}
+
 	const moviesNodes = apiData.map((movie) => {
 		const movieContainer = document.createElement('div');
 		movieContainer.classList.add('movie__container');
@@ -56,28 +78,33 @@ const createMoviesContainers = (apiData, container) => {
 
 		const movieImage = document.createElement('img');
 		movieImage.classList.add('movie__img');
-		movieImage.setAttribute('data-img', `${URL_IMG}${movie.poster_path}`);
+
+		movieImage.setAttribute(
+			lazyload ? 'data-img' : 'src',
+			`${URL_IMG}${movie.poster_path}`
+		);
 		movieImage.setAttribute('alt', `${movie.original_title}`);
+
+		if (lazyload) {
+			elementObserver.observe(movieImage);
+		}
 
 		movieImage.addEventListener('error', () => {
 			movieImage.setAttribute('src', '../assets/no-image.png');
 			movieImage.style = 'filter: blur(1.5px)';
-
 			const movieTitle = document.createElement('p');
 			movieTitle.classList.add('movie__title');
 			movieTitle.textContent = movie.original_title;
 			movieContainer.appendChild(movieTitle);
 		});
-
-		lazyLoader.observe(movieImage);
-
 		movieContainer.appendChild(movieImage);
+
 		return movieContainer;
 	});
-
 	container.append(...moviesNodes);
 };
 
+// CREATE CATEGORIES CONTAINER
 const createCategoriesContainer = (apiDataCategories, container) => {
 	container.innerHTML = '';
 
@@ -103,7 +130,10 @@ const createCategoriesContainer = (apiDataCategories, container) => {
 export const renderTrendingPreviewList = async () => {
 	const trendingMoviesList = await getTrendingMoviesPreview();
 
-	createMoviesContainers(trendingMoviesList, trendingPreviewMovieList);
+	createMoviesContainers(trendingMoviesList, trendingPreviewMovieList, {
+		lazyload: true,
+		clean: true,
+	});
 };
 
 export const renderCategoriesList = async () => {
@@ -164,14 +194,19 @@ export const renderSearchPage = async () => {
 	movieDetail.classList.remove('movieDetail__container');
 	genericList.classList.add('genericList__container');
 
-	genericListBtn.classList.remove('inactive');
+	createMoviesContainers(searchList, genericList, {
+		lazyload: true,
+		clean: false,
+	});
 
-	createMoviesContainers(searchList, genericList);
+	footerObserver.observe(footer);
 };
 
 /* TRENDS PAGE RENDER */
 export const renderTrendsPage = async () => {
-	const trendingMoviesList = await getTrendingMovies();
+	const trendingMoviesList = await getPaginatedTrendingMovies();
+
+	const lastMovie = trendingMoviesList[trendingMoviesList.length - 1];
 
 	headerContainer.classList.remove('header__container--long');
 	headerArrow.classList.remove('inactive');
@@ -184,9 +219,12 @@ export const renderTrendsPage = async () => {
 	movieDetail.classList.remove('movieDetail__container');
 	genericList.classList.add('genericList__container');
 
-	genericListBtn.classList.remove('inactive');
+	createMoviesContainers(trendingMoviesList, genericList, {
+		lazyload: false,
+		clean: false,
+	});
 
-	createMoviesContainers(trendingMoviesList, genericList);
+	footerObserver.observe(footer);
 };
 
 /* CATEGORIES PAGE RENDERS */
@@ -209,11 +247,10 @@ export const renderCategoriesPage = async () => {
 	movieDetail.classList.remove('movieDetail__container');
 	genericList.classList.add('genericList__container');
 
-	genericListBtn.classList.remove('inactive');
+	createMoviesContainers(moviesByCategories, genericList, {
+		lazyload: true,
+		clean: false,
+	});
 
-	createMoviesContainers(moviesByCategories, genericList);
-
-	window.scrollTo(0, 0);
+	footerObserver.observe(footer);
 };
-
-/* OBSERVER */

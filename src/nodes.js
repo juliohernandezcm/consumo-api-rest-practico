@@ -40,3 +40,4 @@ export const relatedMoviesTitle = $('.relatedMovies__title');
 export const relatedMoviesScrollContainer = $(
 	'.relatedMovies__scrollContainer'
 );
+export const footer = $('.footer');

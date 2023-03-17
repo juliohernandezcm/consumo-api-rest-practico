@@ -31,9 +31,11 @@ const getCategoriesMoviesPreview = async () => {
 };
 
 const getMoviesByCategories = async (id) => {
+	page++;
 	const { data } = await api(URL_MOVIE_DISCOVER, {
 		params: {
 			with_genres: id,
+			page,
 		},
 	});
 
@@ -43,19 +45,26 @@ const getMoviesByCategories = async (id) => {
 };
 
 const getMoviesBySearch = async (query) => {
+	page++;
 	const { data } = await api(URL_SEARCH_MOVIE, {
 		params: {
 			query,
+			page,
 		},
 	});
 
 	let movies = data.results;
-
 	return movies;
 };
 
-const getTrendingMovies = async () => {
-	const { data } = await api(URL_TRENDING);
+let page = 0;
+export const getPaginatedTrendingMovies = async () => {
+	page++;
+	const { data } = await api(URL_TRENDING, {
+		params: {
+			page,
+		},
+	});
 
 	let trendingMovies = data.results;
 
@@ -81,7 +90,6 @@ export {
 	getCategoriesMoviesPreview,
 	getMoviesByCategories,
 	getMoviesBySearch,
-	getTrendingMovies,
 	getMovieById,
 	getSimilarMovies,
 };

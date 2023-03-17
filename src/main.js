@@ -12,7 +12,7 @@ import {
 	headerArrow,
 	trendingPreviewBtn,
 	inputSearch,
-	movieContainer,
+	genericListBtn,
 } from './nodes.js';
 
 const navigator = () => {
