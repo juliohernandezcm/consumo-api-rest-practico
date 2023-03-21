@@ -1,2 +1,5 @@
 # consumo-api-rest-practico
-Curso practio de consumo de API REST con JavaScript
+
+MOVIEGRAM
+
+La app solo esta, disponible en mobile, no se ajusta a desktop

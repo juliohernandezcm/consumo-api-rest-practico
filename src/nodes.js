@@ -27,6 +27,10 @@ export const genericList = $('#genericList');
 /* BNT NODES */
 export const genericListBtn = $('.genericList__btn');
 
+/* FAVORITIES MOVIES */
+export const favMoviesContainer = $('.favMovies__container ');
+export const favMoviesList = $('.favMovies__list');
+
 /*  MOVIE DETAIL NODES */
 export const movieDetail = $('#movieDetail');
 export const movieDetailTitle = $('.movieDetail__title');

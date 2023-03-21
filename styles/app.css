@@ -167,6 +167,7 @@ body {
 }
 
 .movie__container {
+	position: relative;
 	height: 230px;
 	padding: 2px;
 	border-radius: 8px;
@@ -188,6 +189,37 @@ body {
 	height: 225px;
 	border-radius: 8px;
 	border: 3px solid var(--assents-color);
+}
+
+.movie__container .movie__btn {
+	width: 35px;
+	height: 35px;
+	background-color: #dddddd;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	border-radius: 50%;
+	border: none;
+	box-shadow: 0px 0px 16px -1px var(--assents-color);
+	opacity: 0.5;
+}
+
+.movie__container .movie__btn::before {
+	content: '🤍';
+	color: transparent;
+	text-shadow: 0 0 0 var(--assents-color);
+}
+
+.movie__container .movie__btn--liked {
+	opacity: 1;
+}
+
+.movie__container .movie__btn--liked::before {
+	content: '🤍';
+	color: transparent;
+	text-shadow: 0 0 0 var(--assents-color);
 }
 
 #categoriesPreview {
@@ -393,6 +425,33 @@ body {
 	--idColor: var(--);
 }
 
+.favMovies__container {
+	margin-top: 2rem;
+}
+
+.favMovies__title {
+	font-size: 1.8rem;
+	margin: 1.6rem 2.4rem;
+}
+
+.favMovies__container .favMovies__list {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin: 2.4rem 2.4rem;
+}
+
+.favMovies__list > .movie__container {
+	display: flex;
+	justify-content: center;
+	position: relative;
+	margin: 6px;
+	border-radius: 8px;
+}
+
+.favMovies__list .movie__container .movie__btn {
+	right: 18px;
+}
+
 .genericList__container {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -405,6 +464,10 @@ body {
 	position: relative;
 	margin: 6px;
 	border-radius: 8px;
+}
+
+.genericList__container .movie__container .movie__btn {
+	right: 20px;
 }
 
 .movie__title {

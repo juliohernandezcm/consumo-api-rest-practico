@@ -17,7 +17,6 @@ import {
 	trendingPreviewMovieList,
 	categoriesPreviewContainer,
 	categoriesPreviewList,
-	genericListBtn,
 	headerTitleCategoryView,
 	genericList,
 	movieDetail,
@@ -27,7 +26,11 @@ import {
 	categoriesList,
 	relatedMoviesScrollContainer,
 	footer,
+	favMoviesContainer,
+	favMoviesList,
 } from './nodes.js';
+
+import { likeMovie, likedMovieList } from './liking.js';
 
 const URL_IMG = 'https://image.tmdb.org/t/p/w300';
 const URL_IMG_500 = 'https://image.tmdb.org/t/p/w500';
@@ -59,7 +62,7 @@ const footerObserver = new IntersectionObserver((entries) => {
 
 // CREATE MOVIES CONTAINER
 const createMoviesContainers = (
-	apiData,
+	data,
 	container,
 	{ lazyload = false, clean = true }
 ) => {
@@ -68,7 +71,7 @@ const createMoviesContainers = (
 		container.innerHTML = '';
 	}
 
-	const moviesNodes = apiData.map((movie) => {
+	const moviesNodes = data.map((movie) => {
 		const movieContainer = document.createElement('div');
 		movieContainer.classList.add('movie__container');
 		movieContainer.addEventListener(
@@ -85,6 +88,17 @@ const createMoviesContainers = (
 		);
 		movieImage.setAttribute('alt', `${movie.original_title}`);
 
+		const movieButton = document.createElement('button');
+		movieButton.classList.add('movie__btn');
+		likedMovieList()[movie.id] &&
+			movieButton.classList.add('movie__btn--liked');
+		movieButton.addEventListener('click', (event) => {
+			event.stopPropagation();
+			movieButton.classList.toggle('movie__btn--liked');
+			likeMovie(movie);
+			location.reload();
+		});
+
 		if (lazyload) {
 			elementObserver.observe(movieImage);
 		}
@@ -98,6 +112,7 @@ const createMoviesContainers = (
 			movieContainer.appendChild(movieTitle);
 		});
 		movieContainer.appendChild(movieImage);
+		movieContainer.appendChild(movieButton);
 
 		return movieContainer;
 	});
@@ -160,7 +175,7 @@ export const renderMovieDetail = async () => {
 	categoriesPreviewContainer.classList.add('inactive');
 
 	movieDetail.classList.add('movieDetail__container');
-
+	favMoviesContainer.classList.add('inactive');
 	movieDetailTitle.textContent = movieDetails.original_title;
 	movieDetailDescription.textContent = movieDetails.overview;
 	movieDetailScore.textContent = movieDetails.vote_average.toFixed(1);
@@ -187,6 +202,8 @@ export const renderSearchPage = async () => {
 	headerArrow.classList.remove('inactive');
 	headerTitle.classList.add('inactive');
 	headerSearchForm.classList.remove('inactive');
+
+	favMoviesContainer.classList.add('inactive');
 
 	trendingPreviewcontainer.classList.add('inactive');
 	categoriesPreviewContainer.classList.add('inactive');
@@ -216,6 +233,8 @@ export const renderTrendsPage = async () => {
 	trendingPreviewcontainer.classList.add('inactive');
 	categoriesPreviewContainer.classList.add('inactive');
 
+	favMoviesContainer.classList.add('inactive');
+
 	movieDetail.classList.remove('movieDetail__container');
 	genericList.classList.add('genericList__container');
 
@@ -240,6 +259,7 @@ export const renderCategoriesPage = async () => {
 	headerTitleCategoryView.classList.remove('inactive');
 	headerTitleCategoryView.textContent = idName.split('%20').join(' ');
 	headerSearchForm.classList.add('inactive');
+	favMoviesContainer.classList.add('inactive');
 
 	trendingPreviewcontainer.classList.add('inactive');
 	categoriesPreviewContainer.classList.add('inactive');
@@ -253,4 +273,15 @@ export const renderCategoriesPage = async () => {
 	});
 
 	footerObserver.observe(footer);
+};
+
+export const renderLikedMovies = () => {
+	const likedMovies = likedMovieList();
+
+	const likedMoviesArray = Object.values(likedMovies);
+
+	createMoviesContainers(likedMoviesArray, favMoviesList, {
+		lazyload: true,
+		clean: true,
+	});
 };

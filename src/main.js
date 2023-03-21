@@ -5,6 +5,7 @@ import {
 	renderSearchPage,
 	renderCategoriesPage,
 	renderTrendsPage,
+	renderLikedMovies,
 } from './renders.js';
 
 import {
@@ -12,7 +13,6 @@ import {
 	headerArrow,
 	trendingPreviewBtn,
 	inputSearch,
-	genericListBtn,
 } from './nodes.js';
 
 const navigator = () => {
@@ -27,6 +27,7 @@ const navigator = () => {
 	} else {
 		renderTrendingPreviewList();
 		renderCategoriesList();
+		renderLikedMovies();
 	}
 	window.scrollTo(0, 0);
 };
