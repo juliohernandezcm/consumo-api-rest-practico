@@ -193,7 +193,6 @@ body {
 }
 
 .movie__container .movie__btn--liked {
-	background-color: var(--assents-color);
 	opacity: 1;
 }
 
